@@ -1,0 +1,59 @@
+\hypertarget{shares_8h}{\section{shares.\-h \-File \-Reference}
+\label{shares_8h}\index{shares.\-h@{shares.\-h}}
+}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+frt\-\_\-text\-\_\-queue $\ast$ \hyperlink{shares_8h_a0f3e0982ec5df30e2339e7162f60a1d6}{print\-\_\-ser\-\_\-queue}
+\item 
+shared\-\_\-data$<$ int32\-\_\-t $>$ $\ast$ \hyperlink{shares_8h_aa60c7b9ac556b68ae360c6850cdba1d2}{count}
+\item 
+shared\-\_\-data$<$ int32\-\_\-t $>$ $\ast$ \hyperlink{shares_8h_a476e236766eb757c99ae736b6b04c7e4}{error}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-This file contains extern declarations for queues and other inter-\/task data communication objects used in a \-M\-E405/507/\-Free\-R\-T\-O\-S project.
+
+\-Revisions\-: \begin{DoxyItemize}
+\item 09-\/30-\/2012 \-J\-R\-R \-Original file was a one-\/file demonstration with two tasks \item 10-\/05-\/2012 \-J\-R\-R \-Split into multiple files, one for each task plus a main one \item 10-\/29-\/2012 \-J\-R\-R \-Reorganized with global queue and shared data references\end{DoxyItemize}
+\-License\-: \-This file is copyright 2012 by \-J\-R \-Ridgely and released under the \-Lesser \-G\-N\-U \-Public \-License, version 2. \-It intended for educational use only, but its use is not limited thereto. 
+
+\-Definition in file \hyperlink{shares_8h_source}{shares.\-h}.
+
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{shares_8h_aa60c7b9ac556b68ae360c6850cdba1d2}{\index{shares.\-h@{shares.\-h}!count@{count}}
+\index{count@{count}!shares.h@{shares.\-h}}
+\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}shared\-\_\-data$<$int32\-\_\-t$>$$\ast$ {\bf count}}}\label{shares_8h_aa60c7b9ac556b68ae360c6850cdba1d2}
+\-T\-O\-D\-O\-: fix comment 
+
+\-Definition at line 76 of file test\-\_\-main.\-cpp.
+
+
+
+\-Referenced by encoder\-\_\-driver\-::encoder\-\_\-driver(), encoder\-\_\-driver\-::get\-\_\-count(), \-I\-S\-R(), main(), encoder\-\_\-driver\-::set\-\_\-position(), and encoder\-\_\-driver\-::zero().
+
+\hypertarget{shares_8h_a476e236766eb757c99ae736b6b04c7e4}{\index{shares.\-h@{shares.\-h}!error@{error}}
+\index{error@{error}!shares.h@{shares.\-h}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}shared\-\_\-data$<$int32\-\_\-t$>$$\ast$ {\bf error}}}\label{shares_8h_a476e236766eb757c99ae736b6b04c7e4}
+\-T\-O\-D\-O\-: fix comment 
+
+\-Definition at line 80 of file test\-\_\-main.\-cpp.
+
+
+
+\-Referenced by encoder\-\_\-driver\-::encoder\-\_\-driver(), \-I\-S\-R(), main(), and task\-\_\-encoder\-::run().
+
+\hypertarget{shares_8h_a0f3e0982ec5df30e2339e7162f60a1d6}{\index{shares.\-h@{shares.\-h}!print\-\_\-ser\-\_\-queue@{print\-\_\-ser\-\_\-queue}}
+\index{print\-\_\-ser\-\_\-queue@{print\-\_\-ser\-\_\-queue}!shares.h@{shares.\-h}}
+\subsubsection[{print\-\_\-ser\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}frt\-\_\-text\-\_\-queue$\ast$ {\bf print\-\_\-ser\-\_\-queue}}}\label{shares_8h_a0f3e0982ec5df30e2339e7162f60a1d6}
+\-This is a print queue, descended from base\-\_\-text\-\_\-serial so that things can be printed into the queue using the \char`\"{}$<$$<$\char`\"{} operator and they'll come out the other end as a stream of characters. \-It's used by tasks that send things to the user interface task to be printed. 
+
+\-Definition at line 72 of file test\-\_\-main.\-cpp.
+
+
+
+\-Referenced by main().
+
