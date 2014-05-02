@@ -92,6 +92,7 @@ int main (void)
 	// sometimes the watchdog timer may have been left on...and it tends to stay on
 	MCUSR = 0;
 	wdt_disable ();
+	task_encoder *taskArr[2];
 
 	// Configure a serial port which can be used by a task to print debugging infor-
 	// mation, or to allow user interaction, or for whatever use is appropriate.  The
@@ -108,9 +109,13 @@ int main (void)
 
 	// Print an empty line so that there's space between task hellos and help message
 	ser_port << endl;
-   new task_encoder ("Encoder1", tskIDLE_PRIORITY + 1, 240, &ser_port, PE4, 0b01010101);
-   new task_encoder ("Encoder2", tskIDLE_PRIORITY + 1, 240, &ser_port, PE5, 0b01010101);
+   task_encoder *task1 = new task_encoder ("Encoder1", tskIDLE_PRIORITY + 1, 240, &ser_port, PE4, 0b01010101);
+   task_encoder *task2 = new task_encoder ("Encoder2", tskIDLE_PRIORITY + 1, 240, &ser_port, PE5, 0b01010101);
 
+   taskArr[0] = task1;
+   taskArr[1] = task2;
+
+   new task_user ("UserInt", tskIDLE_PRIORITY + 1, 240, &ser_port, 2, taskArr);
 
 	// Here's where the RTOS scheduler is started up. It should never exit as long as
 	// power is on and the microcontroller isn't rebooted
