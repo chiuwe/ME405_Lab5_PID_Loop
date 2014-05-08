@@ -25,7 +25,7 @@
 
 
 /** 
- * This task creates a new encoder_driver and outputs it's status on a regular basis.
+ * \brief This task creates a new encoder_driver and outputs it's status on a regular basis.
  */
 class task_encoder : public frt_task
 {

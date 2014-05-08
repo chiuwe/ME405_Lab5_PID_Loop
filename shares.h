@@ -26,6 +26,7 @@
 
 
 // This define prevents this .h file from being included multiple times in a .cpp file
+
 #ifndef _SHARES_H_
 #define _SHARES_H_
 
@@ -41,5 +42,54 @@ extern frt_text_queue* print_ser_queue;
 extern shared_data<int32_t>* count;
 
 extern shared_data<int32_t>* error;
+
+extern frt_queue<uint32_t>* p_queue_1;
+
+/*  This shared data item allows a value to be posted by the source task and read by
+ *  the sink task.
+ */
+extern shared_data<uint32_t>* p_share_1;
+
+/*  This shared data item allows a power value to be posted by user task and read by the 
+ *  motor task.
+ */
+extern shared_data<int16_t>* power_1;
+
+/*  This shared data item allows a power value to be posted by user task and read by the 
+ *  motor task.
+ */
+extern shared_data<int16_t>* power_2;
+
+/*  This shared data item allows a brake bool to be posted by user task and read by the 
+ *  motor task.
+ */
+extern shared_data<bool>* brake_1;
+
+/*  This shared data item allows a break bool to be posted by user task and read by the 
+ *  motor task.
+ */
+extern shared_data<bool>* brake_2;
+
+/*  This shared data item determines if motor task reads from the potentiometer. 
+ *  Set by user task and read by the motor task.
+ */
+extern shared_data<bool>* pot_1;
+
+/*  This shared data item determines if motor task reads from the potentiometer. 
+ *  Set by user task and read by the motor task.
+ */
+extern shared_data<bool>* pot_2;
+
+extern shared_data<float>* p_rate_1;
+
+/*
+* Knows if the motor is in the right location, or needs to be moved via task_P
+*/
+extern shared_data<bool>* isCorrectPos;
+
+extern shared_data<int32_t>* correctPos;
+
+
+
 
 #endif // _SHARES_H_

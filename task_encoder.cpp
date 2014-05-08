@@ -46,7 +46,7 @@ task_encoder::task_encoder (const char* a_name,
 void task_encoder::run (void) {
 
    for (;;) {
-     *p_serial << PMS ("Error: ") << error->get() << " " << PMS ("Count: ") << encoder->get_count() << endl;
+     //*p_serial << PMS ("Error: ") << error->get() << " " << PMS ("Count: ") << encoder->get_count() << endl;
      delay (100);
      runs++;
    }

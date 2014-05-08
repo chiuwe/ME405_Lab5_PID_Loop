@@ -47,7 +47,12 @@
 #include "frt_queue.h"                      // Header of wrapper for FreeRTOS queues
 #include "frt_shared_data.h"                // Header for thread-safe shared data
 #include "shares.h"                         // Global ('extern') queue declarations
+#include "motor_driver.h"
 #include "task_encoder.h"
+#include "task_motor.h"
+#include "task_user.h"
+#include "task_P.h"
+
 
 
 /** This is the number of tasks which will be instantiated from the task_multi class.
@@ -71,13 +76,65 @@ const uint8_t N_MULTI_TASKS = 4;
 */
 frt_text_queue* print_ser_queue;
 
-/** TODO: fix comment
+/** This number represents where the motor is rotationally where 4000 is one full rotation
  */
 shared_data<int32_t>* count;
 
-/** TODO: fix comment
+/** TODO: This is the number of errors that have occured while monotoring the encoder
  */
 shared_data<int32_t>* error;
+
+
+frt_queue<uint32_t>* p_queue_1;
+
+/** This shared data item allows a value to be posted by the source task and read by
+ *  the sink task.
+ */
+shared_data<uint32_t>* p_share_1;
+
+/** This shared data item allows a power value to be posted by user task and read by the 
+ *  motor task.
+ */
+shared_data<int16_t>* power_1;
+
+/** This shared data item allows a power value to be posted by user task and read by the 
+ *  motor task.
+ */
+shared_data<int16_t>* power_2;
+
+/** This shared data item allows a brake bool to be posted by user task and read by the 
+ *  motor task.
+ */
+shared_data<bool>* brake_1;
+
+/** This shared data item allows a break bool to be posted by user task and read by the 
+ *  motor task.
+ */
+shared_data<bool>* brake_2;
+
+/** This shared data item determines if motor task reads from the potentiometer. 
+ *  Set by user task and read by the motor task.
+ */
+shared_data<bool>* pot_1;
+
+/** This shared data item determines if motor task reads from the potentiometer. 
+ *  Set by user task and read by the motor task.
+ */
+shared_data<bool>* pot_2;
+
+/** This global variable will be written by the source task and read by the sink task.
+ *  We expect the process to be corrupted by context switches now and then.
+ */
+uint32_t* p_glob_of_probs;
+
+/** This shared data item is used by the time rate measurement task to make its
+ *  measurements of how fast something is happening available to other tasks.
+ */
+shared_data<float>* p_rate_1;
+
+shared_data<bool>* isCorrectPos;
+
+shared_data<int32_t>* correctPos;
 
 //=====================================================================================
 /** The main function sets up the RTOS.  Some test tasks are created. Then the 
@@ -104,12 +161,43 @@ int main (void)
 	print_ser_queue = new frt_text_queue (32, &ser_port, 10);
 	count = new shared_data<int32_t>;
 	error = new shared_data<int32_t>;
+	p_queue_1 = new frt_queue<uint32_t> (20);
+	p_share_1 = new shared_data<uint32_t>;
+	power_1 = new shared_data<int16_t>;
+	power_2 = new shared_data<int16_t>;
+	brake_1 = new shared_data<bool>;
+	brake_2 = new shared_data<bool>;
+	pot_1 = new shared_data<bool>;
+	pot_2 = new shared_data<bool>;
 
+	isCorrectPos = new shared_data<bool>;
+	correctPos = new shared_data<int32_t>;
+
+	p_glob_of_probs = new uint32_t;
+
+	p_rate_1 = new shared_data<float>;
+
+   // creates two motor tasks.
+   motor_driver *p_my_motor_driver1 = new motor_driver(&ser_port, &DDRC, 0x07, &DDRB, 0x40, &PORTC, 0x04, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1B);
+   motor_driver *p_my_motor_driver2 = new motor_driver(&ser_port, &DDRD, 0xE0, &DDRB, 0x20, &PORTD, 0x80, &TCCR1A, 0xA9, &TCCR1B, 0x0B, &OCR1A);
+
+   new task_P ("P1", tskIDLE_PRIORITY + 1, 240, &ser_port, p_my_motor_driver1);
+   
+   // creates two motor tasks.
+   new task_motor ("Motor1", tskIDLE_PRIORITY + 1, 240, 3, p_my_motor_driver1, brake_1, power_1, pot_1, 1, &ser_port);
+   new task_motor ("Motor2", tskIDLE_PRIORITY + 1, 240, 4, p_my_motor_driver2, brake_2, power_2, pot_2, 0, &ser_port);
+
+	// The user interface is at low priority; it could have been run in the idle task
+	// but it is desired to exercise the RTOS more thoroughly in this test program.
+
+   new task_encoder ("Encoder1", tskIDLE_PRIORITY + 1, 240, &ser_port, PE4, 0b01010101);
+   new task_encoder ("Encoder2", tskIDLE_PRIORITY + 1, 240, &ser_port, PE5, 0b01010101);
+
+
+	new task_user ("UserInt", tskIDLE_PRIORITY + 1, 240, &ser_port);
 
 	// Print an empty line so that there's space between task hellos and help message
 	ser_port << endl;
-   new task_encoder ("Encoder1", tskIDLE_PRIORITY + 1, 240, &ser_port, PE4, 0b01010101);
-   new task_encoder ("Encoder2", tskIDLE_PRIORITY + 1, 240, &ser_port, PE5, 0b01010101);
 
 
 	// Here's where the RTOS scheduler is started up. It should never exit as long as

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Lab 4 ISR: Class Members - Functions</title>
+<title>Lab 5 GET LOOPY: Class Members - Functions</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -27,7 +27,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Lab 4 ISR
+   <div id="projectname">Lab 5 GET LOOPY
    &#160;<span id="projectnumber">1.0</span>
    </div>
    
@@ -83,23 +83,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 &#160;<ul>
+<li>adc()
+: <a class="el" href="classadc.html#af3b8262c08f5fc5ae325a20622883424">adc</a>
+</li>
+<li>brake()
+: <a class="el" href="classmotor__driver.html#aa21e7894053cd83968d9e6b2958c9aec">motor_driver</a>
+</li>
 <li>encoder_driver()
 : <a class="el" href="classencoder__driver.html#ad124387e5bdf6602f0222999cf1f198f">encoder_driver</a>
 </li>
 <li>get_count()
 : <a class="el" href="classencoder__driver.html#acdf13e85a1fd7125689d07eb6f3f5711">encoder_driver</a>
 </li>
+<li>motor_driver()
+: <a class="el" href="classmotor__driver.html#a8ae335815e1a1ef23904750562639346">motor_driver</a>
+</li>
+<li>motor_menu()
+: <a class="el" href="classtask__user.html#a62e9a23d2a052ef1c34ef4c6f1152032">task_user</a>
+</li>
+<li>motor_settings()
+: <a class="el" href="classtask__user.html#aab1a6f3f0ea7acce28c845a0cf992e6d">task_user</a>
+</li>
+<li>print_help_message()
+: <a class="el" href="classtask__user.html#a75475060f83bae1e44bcc8a5c34015c7">task_user</a>
+</li>
 <li>print_status()
-: <a class="el" href="classtask__encoder.html#a5006f06f253b70cfec10065d67e52ec6">task_encoder</a>
+: <a class="el" href="classtask__user.html#a78170e5ebe8dca1ce0a5a09c507399f1">task_user</a>
+, <a class="el" href="classtask__motor.html#ae855a78d1ee432a797d401a9222c9955">task_motor</a>
+, <a class="el" href="classtask__encoder.html#a5006f06f253b70cfec10065d67e52ec6">task_encoder</a>
+</li>
+<li>read_once()
+: <a class="el" href="classadc.html#a2190a59696a7093e1ea605e998ccf97e">adc</a>
+</li>
+<li>read_oversampled()
+: <a class="el" href="classadc.html#a58f1030fe64d3dea4ccd8a2687dd6fce">adc</a>
 </li>
 <li>run()
-: <a class="el" href="classtask__encoder.html#a8380b1f111bf5d6b4256f16e355c0afc">task_encoder</a>
+: <a class="el" href="classtask__P.html#af315a71a8674a968c6169d44009ac3d4">task_P</a>
+, <a class="el" href="classtask__motor.html#a895a075ec470c9d5a07b8959de06aacd">task_motor</a>
+, <a class="el" href="classtask__encoder.html#a8380b1f111bf5d6b4256f16e355c0afc">task_encoder</a>
+, <a class="el" href="classtask__user.html#adca6429d57be25e8d411414fc8ad75af">task_user</a>
 </li>
 <li>set_position()
 : <a class="el" href="classencoder__driver.html#a7ebf72a7925dcf4ef341b5980c1bf68b">encoder_driver</a>
 </li>
+<li>set_power()
+: <a class="el" href="classmotor__driver.html#ae8f7bd6aa553abf071abcebc876a9e10">motor_driver</a>
+</li>
+<li>show_status()
+: <a class="el" href="classtask__user.html#a105bebbd9cb1031154c3dfc3662db4a0">task_user</a>
+</li>
 <li>task_encoder()
 : <a class="el" href="classtask__encoder.html#a86aac760167b1b7d59840270a9365711">task_encoder</a>
+</li>
+<li>task_motor()
+: <a class="el" href="classtask__motor.html#a94cd580f333660de457fdc5c2bd5702e">task_motor</a>
+</li>
+<li>task_P()
+: <a class="el" href="classtask__P.html#a57b4bbf00a14dcbc1597d90eb0ccada2">task_P</a>
+</li>
+<li>task_user()
+: <a class="el" href="classtask__user.html#a3aba77563b375bb14838800608da48bc">task_user</a>
 </li>
 <li>zero()
 : <a class="el" href="classencoder__driver.html#a54528af7d72cc2f707f7ff20a1bc4a2e">encoder_driver</a>
@@ -111,7 +155,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -123,7 +167,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 1 2014 12:16:55 for Lab 4 ISR by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 7 2014 19:46:45 for Lab 5 GET LOOPY by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
